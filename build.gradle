@@ -1,0 +1,48 @@
+group 'me.sunlan'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlinVersion = '1.1.51'
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+ext {
+    junitVersion = '4.12'
+    gradleVersion = '4.2.1'
+    jvmTargetVersion = 1.8
+}
+
+sourceCompatibility = project.ext.jvmTargetVersion
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+    testCompile "junit:junit:$junitVersion"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "$jvmTargetVersion"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "$jvmTargetVersion"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = project.ext.gradleVersion
+}
