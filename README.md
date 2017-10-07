@@ -1,2 +1,6 @@
 # kotlin-console
-Create a console to try Kotlin
+
+### Launch the Kotlin Console
+```
+gradlew kotlinConsole
+```
