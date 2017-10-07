@@ -21,6 +21,7 @@ ext {
     junitVersion = '4.12'
     gradleVersion = '4.2.1'
     jvmTargetVersion = 1.8
+    rsyntaxtextareaVersion = '2.6.1'
 }
 
 sourceCompatibility = project.ext.jvmTargetVersion
@@ -33,6 +34,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+    compile "com.fifesoft:rsyntaxtextarea:$rsyntaxtextareaVersion"
     testCompile "junit:junit:$junitVersion"
 }
 
