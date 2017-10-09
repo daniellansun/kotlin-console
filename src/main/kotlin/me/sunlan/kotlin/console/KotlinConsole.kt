@@ -22,24 +22,41 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants
 import org.fife.ui.rtextarea.RTextScrollPane
 import java.awt.BorderLayout
-import javax.swing.JFrame
-import javax.swing.JPanel
-import javax.swing.SwingUtilities
+import java.awt.Component
+import javax.swing.*
 
 class KotlinConsole: JFrame {
     constructor() : super("Kotlin Console") {
         val cp = JPanel(BorderLayout())
+        val splitPane = createSplitPane(createRTextScrollPane(), createResultPane())
 
-        val textArea = RSyntaxTextArea(20, 60)
-        textArea.syntaxEditingStyle = SyntaxConstants.SYNTAX_STYLE_JAVA
-        textArea.isCodeFoldingEnabled = true
-        val sp = RTextScrollPane(textArea)
-        cp.add(sp)
+        cp.add(splitPane)
 
         contentPane = cp
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        pack()
+//        pack()
+        setSize(800, 500)
         setLocationRelativeTo(null)
+    }
+
+    fun createSplitPane(c1: Component, c2: Component): JSplitPane {
+        val splitPane = JSplitPane(JSplitPane.VERTICAL_SPLIT, c1, c2)
+
+        return splitPane
+    }
+
+    fun createRTextScrollPane(): RTextScrollPane {
+        val textArea = RSyntaxTextArea(20, 60)
+        textArea.syntaxEditingStyle = SyntaxConstants.SYNTAX_STYLE_JAVA
+        textArea.isCodeFoldingEnabled = true
+
+        return RTextScrollPane(textArea)
+    }
+
+    fun createResultPane(): JTextPane {
+        val textPane = JTextPane()
+
+        return textPane
     }
 }
 
