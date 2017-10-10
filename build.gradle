@@ -53,6 +53,9 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+    compile("org.jetbrains.kotlin:kotlin-script-util:${kotlinVersion}") {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-script-runtime'
+    }
     compile "com.fifesoft:rsyntaxtextarea:$rsyntaxtextareaVersion"
     testCompile "junit:junit:$junitVersion"
 }
