@@ -41,19 +41,20 @@ class KotlinConsole: JFrame {
 
         contentPane = cp
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-//        pack()
         setSize(800, 500)
         setLocationRelativeTo(null)
     }
 
     fun createToolBar(): JToolBar {
         val toolBar = JToolBar()
+
+        toolBar.isFloatable = false
+
         val runButton = JButton("Run")
 
-        runButton.addActionListener({ e ->
-            val text = syntaxTextArea.text
+        runButton.addActionListener({
             val engine = ScriptEngineManager().getEngineByExtension("kts")!!
-            val result = engine.eval(text)
+            val result = engine.eval(syntaxTextArea.text)
 
             println(result?.toString())
         })
@@ -90,9 +91,6 @@ class KotlinConsole: JFrame {
 }
 
 fun main(args: Array<String>) {
-//    val engine = ScriptEngineManager().getEngineByExtension("kts")!!
-//    val res = engine.eval("2 + 3")
-//    println("res: $res")
     try {
         for (info in UIManager.getInstalledLookAndFeels()) {
             if ("Nimbus" == info.name) {
